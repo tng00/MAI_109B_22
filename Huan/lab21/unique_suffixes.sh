@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then   # Проверка количества параметров
+if [ $# -ne 1 ]; then
         echo "Ошибка: необходимо передать один аргумент - путь к директории"
         echo "Пример: ./script.sh path/to/directory"
         exit 1
 fi
 
-if [ ! -d "$1" ]; then  # Проверка, является ли аргумент директорией
+if [ ! -d "$1" ]; then
         echo "Ошибка: \"$1\" не является директорией"
         echo "Правильный формат ввода: path/to/directory"
         exit 1
@@ -18,7 +18,6 @@ echo "Уникальные суффиксы файлов в каталоге $di
 
 suffixes=0
 
-# Поиск имён файлов по заданному шаблону, получение списка уникальных отсортированных суффиксов
 for file in $(find "$dir" -type f -exec basename {} \; | grep -E ".+\..+" | rev | cut -d . -f 1 | rev | sort | uniq) 
 	do
 	echo ".$file"
@@ -26,4 +25,3 @@ for file in $(find "$dir" -type f -exec basename {} \; | grep -E ".+\..+" | rev 
 	done
 
 echo "Всего: $suffixes шт."
-
