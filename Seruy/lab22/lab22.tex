@@ -1,0 +1,126 @@
+\documentclass[10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{geometry}
+\geometry{bottom=20mm}
+
+
+\setlength{\headheight}{0mm}
+\setlength{\headsep}{0mm}
+\setcounter{page}{296}
+\linespread{1}
+
+\begin{document}
+    \begin{center}
+        \begin{spacing}
+            ГЛ. V. ДИФФЕРЕНЦИАЛЬНОЕ ИСЧИСЛЕНИЕ
+            \noindent\rule{\textwidth}{1pt}
+		\end{spacing}
+    \end{center}
+    \par Однако такой путь часто приводит к очень громоздкой рациональной функции, поэтому следует иметь в виду, что в ряде случаев существуют и другие возможности рационализации интеграла.
+    \par b. В случае интегралов вида  $\int \ R(cos^2x, sin^2x)dx$ или $\int \ r(tgx)dx$, где r(u) — рациональная функция, удобна подстановка $t = tgx,$ ибо
+    $$cos^2x = \frac{1}{1 + tg^2x}, sin^2x = \frac{tg^2x}{1 + tg^2x},$$
+    $$dt = \frac{dx}{cos^2x}, dx = \frac{dt}{1 + tg^2x}.$$
+    
+    \par Выполнив указанную подстановку, получим соответственно
+    $$\int \ R(cos^2x, sin^2x)dx = \int \ R\bigg(\frac{1}{1 + t^2}, \frac{t^2}{1 + t^2}\bigg)\frac{dt}{1 + t^2},$$
+    $$\int \ r(tg x) dx = \int \ r(t)\frac{dt}{1 + t^2}.$$
+    \par c. В случае интегралов вида
+    $$\int \ R(cosx, sin^2x) sinxdx или \int \ R(cos^2x, sinx) cosxdx$$
+    можно внести функции $sinx$, $cosx$ под знак дифференциала и сделать замену $t = cosx$ или $t = sinx$ соответственно. После замены эти интегралы будут иметь вид
+    $$-\int \ R(t, 1-t^2)dt или \int \ R(1-t^2,t)dt.$$
+    \par Пример 15.
+    $$\int \ \frac{dx}{3 + sinx} = \int \ \frac{1}{3 + \frac{2t}{1 + t^2}} * \frac{2 dt}{1 + t^2} = $$  
+    $$ = 2 \int \ \frac{dt}{3t^2 + 2t +3} = \frac{2}{3}\int \ \frac{d \bigg(t + \frac{1}{3}\bigg)}{\bigg(t + \frac{1}{3} \bigg)^2 + \frac{8}{9}} = \frac{2}{3} \int \ \frac{du}{u^2 + \bigg(\frac{2\sqrt{2}}{3}\bigg)^2} = $$
+    $$ = \frac{1}{\sqrt{2}}arctg\frac{3u}{2\sqrt{2}} + c = \frac{1}{\sqrt{2}}arctg\frac{3t + 1}{2\sqrt{2}} + c = \frac{1}{\sqrt{2}}arctg\frac{3tg\frac{x}{2} + 1}{2\sqrt{2}} + c.$$
+    \par Здесь мы воспользовались универсальной заменой $t = tg\frac{x}{2}.$
+    \par Пример 16.
+
+    $$\int \ \frac{dx}{(sinx + cosx)^2} = \int \ \frac{dx}{cos^2x(tgx + 1)^2} = \int \ \frac{d tgx}{(tgx + 1)^2} = \int \ \frac{dt}{(t + 1)^2} =$$
+    $$= - \frac{1}{t + 1} + c = c - \frac{1}{1 + tgx}.$$
+
+%297
+    \newpage
+
+    \begin{center}
+        \begin{spacing}
+            $\S7.$ \small{ПЕРВООБРАЗНАЯ}
+            \noindent\rule{\textwidth}{1pt}
+		\end{spacing}
+    \end{center}
+    
+    \par Пример 17.
+
+    $$\int \ \frac{dx}{2sin^23x - 3cos^23x + 1} = \int \ \frac{dx}{cosx^23x(2tg^23x - 3 + (1 + tg^23x))} =$$
+
+    $$ = \frac{1}{3} \int \ \frac{dtg3x}{3tg^23x - 2} = \frac{1}{3}\int \ \frac{dt}{3t^2 - 2} = \frac{1}{3 * 2}\sqrt{\frac{2}{3}}\int \ \frac{d\sqrt{\frac{3}{2}}t}{\frac{3}{2}t^2 - 1} = \frac{1}{3\sqrt{6}}\int \ \frac{du}{u^2 - 1} = $$
+    $$\frac{1}{6\sqrt{6}}\ln{|\frac{u-1}{u+1}| + c} = \frac{1}{6\sqrt{6}}\bigg|\frac{\sqrt{\frac{3}{2}t} - 1}{\sqrt{\frac{3}{2}t} + 1}\bigg| + c = \frac{1}{6\sqrt{6}}\bigg|\frac{tg3x - \sqrt{\frac{2}{3}}}{tg3x + \sqrt{\frac{2}{3}}}\bigg| + c.$$
+
+    \par Пример 18.
+    $$\int \ \frac{cos^3x}{sin^7x}dx = \int \ \frac{cos^2x d sinx}{sin^x7x} = \int \ \frac{(1-t^2) dt}{t^7} = $$
+    $$ = \int \ (t^-^7 - t^-^5)dt = -\frac{1}{6}t^-^6 + \frac{1}{4}t^-^4 + c = \frac{1}{4sin^4x} - \frac{1}{6sin^6x} + c.$$
+
+    \par 5. Первообразные вида $\int \ R(x, y(x) dx.$ Пусть, как и в пункте 4, R(x,y) — рациональная функция.
+    Рассмотрим некоторые специальные первообразные вида
+    $$\int \ R(x, y(x)) dx,$$
+    где y = y(x) — функция от x.
+
+    \par Прежде всего, ясно, что если удастся сделать замену x = x(t) так, что обе функции x = x(t) и y = y(x(t)) окажутся рациональными функциями от t, то x'(t) — тоже рациональная функция и
+
+    $$\int \ R(x, y(x)) dx = \int \ R(x(t), y(x(t))x'(t) dt,$$
+    \par т.е. дело сводится к интегрированию рациональной функции.
+
+    \par Мы рассмотрим следующие специальные случаи задания функции y = y(x).
+    \par а. Если $y = \sqrt[n]{\frac{ax + b}{cx + d}}$, где n $\in$  $\mathbb{N}$, то, полагая $t^n$ = $\frac{ax + b}{cx + d}$, получаем
+    $$x = \frac{d * t^n - b}{a - c * t^n}, y = t,$$
+    \par и подынтегральное выражение рационализируется.
+%298
+    \par Пример 19.
+
+    $$\int \ \sqrt[3]{\frac{x-1}{x+1}} dx = \int \ t d\bigg( \frac{t^3 + 1}{1 - t^3} \bigg) = t * \frac{t^3 + 1}{1 - t^3} - \int \ \frac{t^3 + 1}{1 - t^3}dt = $$
+    $$= t * \frac{t^3 + 1}{1 - t^3} - \int \ \bigg( \frac{2}{1 - t^3} - 1 \bigg)dt = t * \frac{t^3 + 1}{1 - t^3} + t - 2 \int \ \frac{dt}{(1-t)(1 + t + t^2)} =$$
+  
+  \newpage
+
+    \begin{center}
+        \begin{spacing}
+            ГЛ. V. ДИФФЕРЕНЦИАЛЬНОЕ ИСЧИСЛЕНИЕ
+            \noindent\rule{\textwidth}{1pt}
+		\end{spacing}
+    \end{center}
+
+
+    $$= \frac{2t}{1-t^3} - 2\int \ \bigg( \frac{1}{3(1-t)} + \frac{2 + t}{3(1 + t + t^2)}\bigg)dt = $$
+    $$= \frac{2t}{1-t^3} + \frac{2}{3}\ln{|1-t|} - \frac{2}{3}\int \ \frac{\bigg(t + \frac{1}{2}\bigg) + \frac{3}{2}}{\bigg(t + \frac{1}{2}\bigg)^2 + \frac{3}{4} dt} = $$
+    $$= \frac{2t}{1-t^3} + \frac{2}{3}\ln{|1 - t|} - \frac{1}{3}\left[{\bigg(t + \frac{1}{2}\bigg)^2 + \frac{3}{4}}\right] - \frac{2}{\sqrt{3}}arctg\frac{2}{\sqrt{3}}\bigg(t + \frac{1}{2}\bigg) + c,$$
+    \par где $$ t = \sqrt[3]{\frac{x - 1}{x + 1}}.$$
+
+    \par b. Рассмотрим теперь случай, когда $y = \sqrt{ax^2 + bx +c}$, т.е. речь идёт об интегралах вида
+    $$\int \ R(x, \sqrt{ax^2 + bx +c})dx.$$
+
+    \par Выделяя полный квадрат в трёхчлене $ax^2 + bx + c$ и делая соответствующую линейную замену переменной, сводим общий случай к одному из следующих трёх простейших:
+    $$ \int \ R(t, \sqrt{t^2 + 1})dt, \int \ R(t, \sqrt{t^2 - 1})dt, \int \ R(t, \sqrt{1 - t^2})dt.   (18)$$  
+
+    \par Для рационализации этих интегралов теперь достаточно положить соответственно
+
+    $$\sqrt{t^2 + 1} = tu + 1, или \sqrt{t^2 + 1} = tu - 1, или \sqrt{t^2 + 1} = t - u;$$
+    $$\sqrt{t^2 - 1} = u(t - 1), или \sqrt{t^2 - 1} = u(t + 1), или \sqrt{t^2 - 1} = t - u; $$
+    $$\sqrt{1 - t^2} = u(1 - t) , или \sqrt{1 - t^2} = u(1 + t), или \sqrt{1 - t^2} = tu +- 1. $$
+    \par Эти подстановки были предложены ещё Эйлером (см. задачу 3 в конце параграфа).
+
+    \par Проверим, например, что после первой подстановки мы сведем интеграл к интегралу от рациональной функции.
+
+    \par В самом деле, если $\sqrt{t^2 + 1} = tu + 1$, то $t^2 + 1 = t^2u^2 + 2u + 1$, откуда 
+    $$t = \frac{2u}{1 - u^2}$$
+    \par и, в свою очередь,
+    $$\sqrt{t^2 + 1} = \frac{1 + u^2}{1 - u^2}.$$
+
+    \par Таким образом, t и $\sqrt{t^2 + 1}$ выразились рационально через u, а следовательно, интеграл привелся к интегралу от рациональной функции.
+
+    \par Интегралы (18) подстановки $t = sh\varphi$, $t = ch\varphi$, $t = sin\varphi$ (или $t = cos\varphi$) соответственно приводятся также к тригонометрической форме 
+    $$\int \ R(sh\varphi, ch\varphi)ch\varphi d\varphi, \int \ R(ch\varphi, sh\varphi)sh\varphi d\varphi.$$
+
+\end{document}

@@ -2,7 +2,6 @@ name: C/C++ CI
 
 on:
   pull_request:
-    branches: main
 
 jobs:
   Checks_changing:
@@ -10,23 +9,43 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: cd work dir
-      run: cd $(python3 setup_work_dir.py -n ${{ github.event.pull_request.user.login }})
-    - name: Run linters and formatters
-      uses: cpp-linter/cpp-linter-action@v2
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      with:
-        style: file
-        thread-comments: True
-        files-changed-only: False
-    - name: Check linters and format
-      if: steps.linter.outputs.checks-failed > 0
-      run: echo "Some files failed the linting checks!" | exit 1
+    - name: Run clang-tidy
+      run: |
+          [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=origin/${GITHUB_BASE_REF}
+          echo "${BRANCH_VAR}"
+          echo "$(git diff --name-only ${BRANCH_VAR})"
+          LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep --color=never '.cpp' | tr '\n' ' ')
+          if [[ -n ${LIST_CHECK_FILES} ]]
+          then
+            sudo apt install -y clang-tidy-14
+            python3 ./tools/run-clang-tidy -clang-tidy-binary clang-tidy-14 -p build_debug -q -j$(nproc) ${LIST_CHECK_FILES}
+          else
+            echo "Nothing check in clang-tidy"
+          fi
     - name: Build with make
-      run: make
+      run: |
+          [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=origin/${GITHUB_BASE_REF}
+          echo "${BRANCH_VAR}"
+          echo "$(git diff --name-only ${BRANCH_VAR})"
+          LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep --color=never '.cpp' | tr '\n' ' ')
+          if [[ -n ${LIST_CHECK_FILES} ]]
+          then
+            python3 ./tools/run-project --run_type build --files ${LIST_CHECK_FILES}
+          else
+            echo "Nothing to build"
+          fi
     - name: Run tests
-      run: make test
+      run: |
+          [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=origin/${GITHUB_BASE_REF}
+          echo "${BRANCH_VAR}"
+          echo "$(git diff --name-only ${BRANCH_VAR})"
+          LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep --color=never '.cpp' | tr '\n' ' ')
+          if [[ -n ${LIST_CHECK_FILES} ]]
+          then
+            python3 ./tools/run-project --run_type tests --files ${LIST_CHECK_FILES}
+          else
+            echo "Nothing to test"
+          fi
         
 
 

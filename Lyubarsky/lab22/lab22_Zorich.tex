@@ -1,0 +1,95 @@
+\documentclass[a4paper, 10pt]{book}
+\usepackage[english, russian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[left=10mm, top=15mm,
+            right=20mm, bottom=15mm,
+            nohead, nofoot{geometry}
+
+\setlength{\headheight}{0mm}
+\setlength{\headsep}{0mm}
+\setcounter{page}{325}
+
+\begin{document}
+    \begin{center}
+        $\S2.$ \scriptsize ЛИНЕЙНОСТЬ АДДИКТИВНОСТЬ И МОНОТОННОСТЬ ИТЕГРАЛА
+    \end{center}
+    
+    \par\small\textbf{3. Оценка интеграла, монотонность интеграла, теоремы о среднем.}
+    
+    \par\textbf {a. Одна общая оценка интеграла.} Начнем с общей оценки интеграла, которая, как потом выясниться, справедлива не только для интегралов от действительных функций.
+    \par\textsc{Теорема 3.}\textit{ Если $a\leqslant b$ и $f\in\mathbb{R} [a,b]$, то $|f|\in \mathbb{R} [a,b]$ и справедливо неравенство}
+    \[\Bigg|\int_{a}^{b}\limits f(x)dx\Bigg|\leqslant\int_{a}^{b}\limits |f|(x)dx.\eqno (9)\]
+    \textit{ Если при этом $|f|(x)\leqslant C$ на $[a, b]$, то}
+    \[\int_{a}^{b}\limits |f|(x)dx\leqslant C(b-a).\eqno (10)\]
+    $\blacktriangleleft$ При $a=b$ утверждение тривиально, поэтому будем считать, что $a<b$.
+    \par Для доказательства теоремы достаточно вспомнить теперь, что $|f|\in\mathbb{R} [a,b]$ (см. утверждение 4 из $\S1$), и написать следующую оценку интегральной суммы $\sigma(f, P, \xi):$
+    \[\Bigg|\sum_{i=1}^{n} f(\xi_i)\Delta x_i\Bigg|\leqslant\sum_{i=1}^{n} |f(\xi_i)||\Delta x_i| =\sum_{i=1}^{n}|f(\xi_i)|\Delta x_i\leqslant C\sum_{i=1}^n\Delta x_i = C(b-a).\]
+    Переходя к пределу при $\lambda(P) \to 0$, получаем
+    \[\Bigg|\int_a^b\limits f(x)dx\Bigg|\leqslant\int_a^b\limits |f|(x)dx\leqslant C(b-a).\blacktriangleright\]
+    
+    \par\textbf{b. Монотонность интеграла и первая теорема о среднем.} Все дальнейшее спецефично для интегралов от действительных функций.
+    \par\textsc{Теорема 4.}\textit{ Если $a \leqslant b, f_1,f_2\in\mathbb{R} [a,b]$ и $f_1(x)\leqslant f_2(x)$ в любой точке $x\in [a,b],$ то}
+    \[\int_a^b\limits f_1(x)dx\leqslant\int_a^b\limits f_2(x)dx.\eqno (11)\]
+    $\blacktriangleleft$ При $a=b$ утверждение тривиально. Если же $a<b$, то достаточно записать для интегральных сумм неравенство
+    \[\sum_{i=1}^n f_1(\xi_i)\Delta x_i\leqslant\sum_{i=1}^n f_2(\xi_i)\Delta x_i,\]
+    справидливое, поскольку $\Delta x_i > 0 (i=1,\dots ,n)$, и затем перейти в нем к пределу $\lambda (P)\to 0.\blacktriangleright$
+    \parТеорему 4 можно трактовать как утверждение о монотонности зависимости интеграла от подынтегральной функции.
+
+
+    \newpage
+    \begin{center}
+        \scriptsize\textsc{ГЛ. VI. ИНТЕГРАЛ}
+    \end{center}
+
+    \par Из теоремы 4 получается ряд полезных следствий.
+    \par\textsc{Следствие 1.}\textit{Если $a\leqslant b, f\in\mathbb{R} [a,b]$ и $m\leqslant f(x)\leqslant M$ на $x\in [a,b],$ то}
+    \[m\cdot (b-a)\leqslant\int_a^b\limits f(x)dx\leqslant M\cdot (b-a),\eqno (12)\]
+    \textit{и, в частности, если $0\leqslant f(x)$ на $[a,b]$, то}
+    \[0\leqslant\int_a^b f(x)dx.\]
+    $\blacktriangleleft$ Соотношение (12) получается, если проинтегрировать каждый член неравенств $m\leqslant f(x)\leqslant M$ и воспользоваться теоремой 4. $\blacktriangleright$
+    
+    \par\textsc{Следствие 2.}\textit{Если}
+    \[f\in\mathbb{R} [a,b],\qquad m=\inf_{x\in [a,b]}\limits f(x),\qquad M=\sup_{x\in [a,b]}\limits f(x),\]
+    \textit{то найдется число $\mu\in [m,M]$ такое, что}
+    \[\int_a^b\limits f(x)dx=\mu\cdot (b-a).\eqno (13)\]
+    $\blacktriangleleft$ Если $a=b$, то утверждение тривиально. Если $a\ne b$, то положим $\mu =\frac{1}{b-a}\int_a^b\limits f(x)dx.$ Тогда из (12) следует, что $m\leqslant\mu\leqslant M,$ если $a<b.$ Но обе части (13) меняют знак при перестановке местами $a$ и $b$, поэтому (13) справедливо и при $b<a.\blacktriangleright$
+
+    \textsc{Следствие 3.}\textit{ Если $f\in C[a,b]$, то найдется точка $\xi\in [a,b]$ такая, что}
+    \[\int_a^b\limits f(x)dx=f(\xi)(b-a). \eqno (14)\]
+    $\blacktriangleleft$ По теореме о промежуточном значении для непрерывной функции, на отрезке $[a,b]$ найдется точка $\xi$, в которой $f(\xi)=\mu$, если только
+    \[m=\min_{x\in [a,b]}\limits f(x)\leqslant\mu\leqslant\max_{x\in [a,b]}\limits f(x)=M.\]
+    Таким образом, (14) следует из (13). $\blacktriangleright$
+    \parРавенство (14) часто называют\textit{первой теоремой о среднем} для интеграла. Мы же зарезервируем это название для следующего, несколько более общего утверждения.
+
+
+    \newpage
+    \begin{center}
+        $\S2.$ \scriptsizeЛИНЕЙНОСТЬ АДДИКТИВНОСТЬ И МОНОТОННОСТЬ ИТЕГРАЛА
+    \end{center}
+    
+    \par\textsc{Теорема 5}(первая теорема о среднем для интеграла).\textit{Пусть}
+    \[f,g\in R[a,b],\qquad m=\inf_{x\in [a,b]}\limits f(x),\qquad M=\sup_{x\in [a,b]} f(x).\]
+    \textit{Если функция $g$ неотрицательна $($или неположительна$)$ на отрезке $[a,b]$, то}
+    \[\int_a^b\limits (f\cdot g)(x)dx=\mu\int_a^b\limits g(x)dx,\eqno (15)\]
+    \textit{где $\mu\in [m,M].$}
+    \par\textit{Если, кроме того, известно, что $f\in C[a,b]$, то найдется точка $\xi\in [a,b]$ такая, что}
+    \[\int_a^b\limits (f\cdot g)(x)dx=f(\xi)\int_a^b\limits g(x)dx.\eqno (16)\]
+    $\blacktriangleleft$ Поскольку перестановка пределов интегрирования приводит к изменению знака одновременно в обеих частях равенства (15), то достаточно проверить это равенство в случае $a<b$. Изменение знака функции $g(x)$ тоже одновременно меняет знак обеих частей равенства (15), поэтому можно без ограничений общности доказательств считать, что $g(x)\geqslant0$ на $[a,b]$.
+    \parПоскольку $m=\inf_{x\in [a,b]}\limits f(x)$ и $M=\sup_{x\in [a,b]} f(x)$, то при $g(x)\geqslant 0$
+    \[mg(x)\leqslant f(x)g(x)\leqslant Mg(x).\]
+    Поскольку $m\cdot g\in R[a,b], f\cdot g\in\mathbb{R} [a,b]$ и $M\cdot g\in\mathbb{R} [a,b]$, то, применяя теорему 4 и теорему 1, получаем
+    \[m\int_a^b\limits g(x)dx\leqslant \int_a^b\limits f(x)g(x)dx\leqslant M\int_a^b\limits g(x)dx.\eqno (17)\]
+    \parЕсли $\int_a^b\limits g(x)dx=0$, то, как видно из этих неравенств, соотношение (15) выполнено.
+    \parЕсли же $\int_a^b\limits g(x)dx\ne 0$, то, пологая
+    \[\mu=\Bigg(\int_a^b\limits g(x)dx\Bigg)^{-1}\cdot\int_a^b\limits (f\cdot g)(x)dx,\]
+    из (17) находим, что
+    \[m\leqslant\mu\leqslant M\]
+    но это равенство равносильно соотношению (15).
+    \parРавенство (16) теперь следует из (15) и теоремы о промежуточном значении для функции $f\in C[a,b]$, с учетом того, что в случае $f\in C[a,b]$
+    \[m=\min_{x\in [a,b]}\limits f(x)\qquad u\qquad M=\max_{x\in [a,b]}\limits f(x). \blacktriangleright\]
+    Заметим, что равенство (13) получается из (15), если $g(x)\equiv1$ на $[a,b]$.
+    
+\end{document}
