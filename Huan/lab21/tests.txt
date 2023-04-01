@@ -1,0 +1,64 @@
+tng00@DESKTOP-AE5RPFC:~/MAI_109B_22/Huan/lab21$ ./lab21.sh ~
+Уникальные суффиксы файлов в каталоге /home/tng00:
+.600pk
+.idx
+.md
+.md5
+.mf
+.old
+.pack
+.pickle
+.pub
+.py
+.sample
+.sh
+.tex
+.tfm
+.txt
+.yml
+Всего: 16 шт.
+tng00@DESKTOP-AE5RPFC:~/MAI_109B_22/Huan/lab21$ ./lab21.py ~
+Уникальные суффиксы файлов в каталоге /home/tng00:
+.600pk
+.idx
+.md
+.md5
+.mf
+.old
+.pack
+.pickle
+.pub
+.py
+.sample
+.sh
+.tex
+.tfm
+.txt
+.yml
+Всего: 16 шт.
+tng00@DESKTOP-AE5RPFC:~/MAI_109B_22/Huan/lab21$ ./lab21.sh ~/MAI_109B_22/
+Уникальные суффиксы файлов в каталоге /home/tng00/MAI_109B_22/:
+.idx
+.md
+.pack
+.py
+.sample
+.sh
+.yml
+Всего: 7 шт.
+tng00@DESKTOP-AE5RPFC:~/MAI_109B_22/Huan/lab21$ ./lab21.py ~/MAI_109B_22/
+Уникальные суффиксы файлов в каталоге /home/tng00/MAI_109B_22/:
+.idx
+.md
+.pack
+.py
+.sample
+.sh
+.yml
+Всего: 7 шт.
+tng00@DESKTOP-AE5RPFC:~/MAI_109B_22/Huan/lab21$ ./lab21.py ~/MAI_109B_22/ jk
+Ошибка: необходимо передать один аргумент - путь к директории
+Пример: ./script.py path/to/directory
+tng00@DESKTOP-AE5RPFC:~/MAI_109B_22/Huan/lab21$ ./lab21.py ~/MAI_109B_22/jk/
+Ошибка: "/home/tng00/MAI_109B_22/jk/" не является директорией
+Правильный формат ввода: path/to/directory

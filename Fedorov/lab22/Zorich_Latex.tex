@@ -1,0 +1,233 @@
+\documentclass[a4paper, 10pt]{book}
+\usepackage[english, russian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage[left=10mm, top=15mm,
+            right=20mm, bottom=15mm,
+            nohead, nofoot{geometry}
+
+\setlength{\headheight}{0mm}
+\setlength{\headsep}{0mm}
+\setcounter{page}{341}
+
+\begin{document}
+    \begin{center}
+        $\S3.$ ИНТЕГРАЛ И ПРОИЗВОДНАЯ
+    \end{center}
+
+    
+    $
+    \par
+    a)
+    \displaystyle
+    \int\limits_{-\pi}^{\pi} \sin{mx}\cos{nx} \,dx = \frac{1}{2} \int\limits_{-\pi}^{\pi} (\sin{(n + m)x}-\sin{(n - m)x}) \,dx =
+    \\
+    \null\hfill=\frac{1}{2} \left( -\frac{1}{n + m} \cos{(n + m)x} + \frac{1}{n - m} \cos{(n - m)x} \right)\Biggr|_{-\pi}^{\pi} = 0,
+    $
+
+
+    \par\noindent
+    если $n - m \neq 0$. Случай, когда $n - m = 0$, можно рассмотреть отдельно, и в этом случае, очевидно, вновь приходим к тому же результату.
+
+
+    $
+    \par
+    b)
+    \displaystyle
+    \int\limits_{-\pi}^{\pi} \sin^2{mx} \,dx = \frac{1}{2} \int\limits_{-\pi}^{\pi} (1 - \cos{2mx}) \,dx = \frac{1}{2} \left(x - \frac{1}{2m}sin{2mx} \right)\Biggr|_{-\pi}^{\pi} = \pi.
+    $
+
+
+    $
+    \par
+    c)
+    \displaystyle
+    \int\limits_{-\pi}^{\pi} \cos^2{nx} \,dx = \frac{1}{2} \int\limits_{-\pi}^{\pi} (1 + \cos{2nx}) \,dx = \frac{1}{2} \left(x + \frac{1}{2n}sin{2nx} \right)\Biggr|_{-\pi}^{\pi} = \pi.
+    $
+
+
+    \par
+    Пример 3.
+    $\displaystyle$
+    Пусть $\textit{f} \in \mathscr{R}[-a, a]$. Покажем, что
+    \[
+    \displaystyle
+    \int\limits_{-a}^{a} f(x) \,dx =
+    \begin{cases}
+    \displaystyle
+      2\int\limits_{0}^{a} f(x) \,dx, & \text{если $f$ - четная функция,} \\
+      0, & \text{если $f$ - нечетная функция.}
+    \end{cases}
+    \]
+
+
+    \par
+    Если $f(-x) = f(x)$, то
+    \\
+
+    
+    $
+    \displaystyle
+    \int\limits_{-a}^{a} f(x) \,dx = 
+    \int\limits_{-a}^{0} f(x) \,dx + \int\limits_{0}^{a} f(x) \,dx =
+    \int\limits_{a}^{0} f(-t)(-1) \,dt + \int\limits_{0}^{a} f(x) \,dx =
+    \\
+    \null\hfill=\int\limits_{0}^{a} f(-t) \,dt + \int\limits_{0}^{a} f(x) \,dx =
+    \int\limits_{0}^{a} (f(-x)+f(x)) \,dx = 2\int\limits_{0}^{a} f(x) \,dx.
+    $
+
+    
+    \par
+    Если же $f(-x) = -f(x)$, то, как видно из тех же выкладок, получим
+    \[
+    \int\limits_{-a}^{a} f(x) \,dx =
+    \int\limits_{0}^{a} (f(-x) + f(x)) \,dx =
+    \int\limits_{0}^{a} 0 \,dx = 0.
+    \]
+
+
+    \par
+    Пример 4. Пусть \textit{f} - определенная на всей числовой прямой $\mathbb{R}$ периоди-
+    ческая функция с периодом \textit{T}, т.е. $f(x+T)=f(x)$ при $x \in \mathbb{R}$.
+
+
+    \par
+    Если $f$—интегрируемая на каждом конечном отрезке функция, то при любом $a \in \mathbb{R}$ имеет место равенство
+    \[
+    \int\limits_{a}^{a+T} f(x) \,dx = \int\limits_{0}^{T} f(x) \,dx,
+    \]
+    т.е. интеграл от периодической функции по отрезку длины периода T этой функции не зависит от положения отрезка интегрирования на числовой
+
+    \newpage
+    \begin{center}
+        ГЛ. VI. ИНТЕГРАЛ
+    \end{center}
+
+    \par\noindent
+    прямой:
+
+    
+    $
+    \displaystyle
+    \int\limits_{a}^{a+T} f(x) \,dx = \int\limits_{a}^{0} f(x) \,dx + \int\limits_{0}^{T} f(x) \,dx + \int\limits_{T}^{a+T} f(x) \,dx = 
+    \\
+    \null\hfill =\int\limits_{0}^{T} f(x) \,dx + \int\limits_{a}^{0} f(x) \,dx + \int\limits_{0}^{a} f(t + T)\cdot1 \,dt=
+    \\
+    \null\hfill =\int\limits_{0}^{T} f(x) \,dx + \int\limits_{a}^{0} f(x) \,dx + \int\limits_{0}^{a} f(t) \,dt =\int\limits_{0}^{T} f(x) \,dx.
+    $
+
+
+    \par
+    Мы сделали замену $x = t + T$ и воспользовались периодичностью фун-
+    кции $f(x)$.
+    \par
+    Пример 5. Пусть нам нужно вычислить интеграл $\int\limits_{0}^{1} sin{x^2} \,dx$, например, с точностью до $10^{-2}$.
+    \par
+    Мы знаем, что первообразная $\int sin{x^2} \,dx$ (интеграл Френеля) не выражается в элементарных функциях, поэтому использовать формулу Ньютона—
+    Лейбница здесь в традиционном смысле нельзя.
+    \par
+    Поступим иначе. Исследуя в дифференциальном исчислении формулу Тейлора, 
+    мы в качестве примера (см. гл. V, \S 3, пример 11) нашли, 
+    что на отрезке $[-1, 1]$ с точностью до $10^{-3}$ имеет место равенство
+    \[
+    \sin{x} \approx x - \frac{1}{3!}x^{3} + \frac{1}{5!}x^{5}=:P(x).
+    \]
+    \par
+    Но если $|\sin{x} - P(x)| < 10^{-3}$ на отрезке $[-1, 1]$, то верно также, что $|\sin{x^2} - P(x^2)| < 10^{-3}$ при $0 \leq x \leq 1$.
+    \par
+    Следовательно,
+    \[
+    \left|
+    \int\limits_{0}^{1} \sin{x^2} \,dx - \int\limits_{0}^{1} P(x^2) \,dx
+    \right| \leq \int\limits_{0}^{1} \left| \sin{x^2} - P(x^2) \right| \,dx <
+    \int\limits_{0}^{1} 10^{-3} \,dx < 10^{-3}.
+    \]
+    \par
+    Таким образом, для вычисления интеграла $\int\limits_{0}^{1} sin{x^2} \,dx$ с нужной точно-
+    стью достаточно вычислить интеграл $\int\limits_{0}^{1} P(x^2) \,dx$. Но
+    \newline
+    $
+    \displaystyle
+    \int\limits_{0}^{1} P(x^{2}) \,dx = \int\limits_{0}^{1} \left(
+    x^{2} - \frac{1}{3!}x^{6} + \frac{1}{5!}x^{10} \right) \,dx =
+    \\
+    \null\hfill
+    =\left.\left(
+    \frac{1}{3}x^{3} - \frac{1}{3! \, 7}x^{7} + \frac{1}{5! \, 11}x^{11} \right)\right|_{0}^{1} =
+    \frac{1}{3} - \frac{1}{3! \, 7} + \frac{1}{5! \, 11} =
+    0,310 \pm 10^{-3},
+    $
+    \newline
+    поэтому
+    \[
+    \int\limits_{0}^{1} sin{x^2} \,dx = 0,310 \pm 2\cdot10^{-3} = 0,31\pm10^{-2}.
+    \]
+
+    \newpage
+    \begin{center}
+        \S3. ИНТЕГРАЛ И ПРОИЗВОДНАЯ
+    \end{center}
+
+    \par
+    Пример 6. Величина $ \mu = \frac{1}{b - a} \int\limits_{a}^{b} f(x) \,dx $ называется \textit{интегральным сред-
+    ним значений функции на отрезке} $[a, b]$.
+    \par
+    Пусть $f$ — определенная на $\mathbb{R}$ и интегрируемая на любом отрезке функция.
+    \par
+    Построим по $f$ новую функцию
+    \[
+    F_\delta(x) = \frac{1}{2\delta} \int\limits_{x - \delta}^{x + \delta} f(t) \,dt,
+    \]
+    значение которой в точке $x$ есть интегральное среднее значений $f$ в
+    $\delta-$окрестности точки $x$.
+    \par
+    Покажем, что функция $F_\delta(x)$ (называемая \textit{усреднением f}) более регуляр-
+    на по сравнению с $f$. Точнее, если $f$ интегрируема на любом отрезке [a, b], то $F_\delta(x)$ непрерывна на $\mathbb{R}$, а если $f \in C(\mathbb{R})$, то $F_\delta(x) \in  C^{(1)}(\mathbb{R}).$
+    \par
+    Проверим сначала непрерывность функции $F_\delta(x)$:
+    \newline
+    $
+    \displaystyle
+    \left| F_\delta(x + h) - F_\delta(x) \right| =
+    \frac{1}{2\delta}
+    \left|
+    \int\limits_{x+\delta}^{x+\delta+h} f(t) \,dt +
+    \int\limits_{x-\delta+h}^{x-\delta} f(t) \,dt
+    \right|
+    \leq
+    \\
+    \null\hfill \leq\frac{1}{2\delta}(C|h|+C|h|) = \frac{C}{\delta}|h|,
+    $
+    \newline
+    если $|f(t)| \leq C$, например, в $2\delta$-окрестности точки $x$ и $|h|<\delta$. Из этой оценки, очевидно, следует непрерывность функции $F_{\delta}(x)$.
+    \par
+    Если же $f \in C(\mathbb{R})$, то по правилу дифференцирования сложной функции
+    \[
+    \frac{d}{dx} \int\limits_{a}^{\varphi(x)} f(t) \,dt =
+    \frac{d}{d\varphi} \int\limits_{a}^{\varphi} f(t) \,dt \cdot
+    \frac{d\varphi}{dx} = f(\varphi(x))\varphi^{'}(x),
+    \]
+    поэтому из записи
+    \[
+    F_\delta(x) = \frac{1}{2\delta} \int\limits_{a}^{x + \delta} f(t) \,dt - \frac{1}{2\delta} \int\limits_{a}^{x - \delta} f(t) \,dt
+    \]
+    получаем, что
+    \[
+    F_{\delta}^{'}(x) = \frac{f(x + \delta) - f(x-\delta)}{2\delta}.
+    \]
+    \par
+    Функцию $F_{\delta}(x)$ после замены $t = x + u$ переменной интегрирования мож-
+    но записать в виде
+    \[
+    F_{\delta}(x) = \frac{1}{2\delta} \int\limits_{-\delta}^{\delta}
+    f(x + u) \,du.
+    \]
+    Если $f \in C(\mathbb{R})$, то, применяя первую теорему о среднем, находим, что
+    \[
+    F_{\delta}(x) = \frac{1}{2\delta}f(x + \tau) \cdot 2\delta = f(x+\tau),
+    \]
+    
+\end{document}

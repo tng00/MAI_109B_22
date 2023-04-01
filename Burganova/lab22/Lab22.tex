@@ -1,0 +1,107 @@
+\documentclass[a4paper, 12pt]{book}
+
+\usepackage{geometry}
+\usepackage[english, russian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{tabto}
+\usepackage[skip=6pt, indent=20pt]{parskip}
+
+
+\geometry{left=3cm}
+\geometry{right=4cm}
+\geometry{top=4cm}
+\geometry{bottom=2cm}
+
+\setlength{\headheight}{0mm}
+\setlength{\headsep}{0mm}
+\setcounter{page}{506}
+
+\begin{document}
+    \begin{center}
+        \begin{spacing}
+        
+                    ГЛ. VII. ФУНКЦИИ МНОГИХ ПЕРЕМЕННЫХ
+            \noindent\rule{\textwidth}{1pt}
+	\end{spacing}
+    \end{center}
+    стью точки $x$, которая вообще не содержит точек $F$ , т. е. $O(x) \subset \mathbb{R}^m \setminus F$
+    и, следовательно, множество $\mathbb{R}^m \setminus F = \mathbb{R}^m \setminus \overline{F}$ открыто, т. е. $F$ замкнуто
+    в $\mathbb{R}^m. \blacktriangleright$
+    {\setlength{\parskip}{18pt}
+    \par\textbf{3. Компакты в $\mathbb{R}^m$}}
+    \par\textbf{Определение 8.} Множество $K \subset \mathbb{R}^m$ называется компактом, если из любого покрытия K множествами, открытыми в $\mathbb{R}^m$, можно выделить конечное покрытие.
+    \par\textbf{Пример 12.} Отрезок $[a, b] \subset \mathbb{R}^1$ является компактом в $\mathbb{R}^1$ в силу леммы о конечном покрытии.
+    \par\textbf{Пример 13.} Обобщением отрезка в $\mathbb{R}^m$ является множество \[I = \{x \in \mathbb{R}^m | a^i \le x^i \le b^i , i = 1, \dots , m\},\] которое называется $m$\textit{-мерным промежутком}, $m$-мерным брусом или $m$-мерным параллелепипедом.
+    \\Покажем, что $I$ — компакт в $\mathbb{R}^m$.
+    \par $\blacktriangleleft$ Предположим, что из некоторого открытого покрытия $I$ нельзя выделить конечное покрытие. Разделив каждый из координатных отрезков $I^i = \{x^i \in \mathbb{R} | a^i \le x^i \le b^i \} (i = 1, \dots , m)$ пополам, мы разобьем промежуток $I$ на $2^m$ промежутков, из которых по крайней мере один не допускает конечного покрытия множествами нашей системы. С ним поступим так же, как и с исходным промежутком. Продолжая этот процесс деления, получим последовательность вложенных промежутков $I = I_1 \supset I_2 \supset \dots \supset I_n \supset \dots$, ни один из которых не допускает конечного покрытия. Если $In = \{x \in \mathbb{R}^m | a^i_n \le x^i \le b^i_n , i = 1, \dots , m\}$, то при каждом $i \in \{1, \dots , m\}$ координатные отрезки $a^i_n \le x^i \le b^i_n (n = 1, 2, \dots )$ образуют, по построению, систему вложенных отрезков, длины которых стремятся к нулю. Найдя при каждом $i \in \{1, \dots , m\}$ точку $\xi^i \in [a^i_n, b^i_n]$, общую для всех этих отрезков, получим точку $\xi = (\xi^1 , \dots , \xi^m)$, принадлежащую всем промежуткам $I = I_1, I_2, \dots , I_n, \dots$ Поскольку $\xi \in I$, то найдется такое открытое множество $G$ нашей системы покрывающих множеств, что $\xi \in G$. Тогда при некотором $\delta > 0$ также $B(\xi; \delta) \subset G$. Но по построению в силу соотношения (2) найдется номер $N$ такой, что $I_n \subset B(\xi; \delta) \subset G$ при $n > N$, и мы вступаем в противоречие с тем, что промежутки $I_n$ не допускают конечного покрытия множествами данной системы. $\blacktriangleright$
+
+    \newpage
+
+    \begin{center}
+            \begin{spacing}
+            
+                \textsection 1. ПРОСТРАНСТВО $\mathbb{R}^m$ И КЛАССЫ ЕГО ПОДМНОЖЕСТВ
+                \noindent\rule{\textwidth}{1pt}
+            \end{spacing}
+    \end{center}
+    {\setlength{\parskip}{0pt}
+    \par\textbf{Утверждение 3.} \textit{Если $K$ — компакт в $\mathbb{R}^m$, то}
+    \begin{itemize}
+        \item [a)] \textit{$K$ — замкнутое множество в $\mathbb{R}^m$;}
+        \item [b)] \textit{любое замкнутое в $\mathbb{R}^m$ множество, содержащееся в $K$, само является компактом.}
+    \end{itemize}}
+    \par $\blacktriangleleft$ a) Покажем, что любая точка $a \in \mathbb{R}^m$, предельная для $K$, принадлежит $K$. Пусть $a \notin K$. Для каждой точки $x \in K$ построим такую окрестность $G(x)$, что точка $a$ обладает окрестностью, не имеющей с $G(x)$ общих точек. Совокупность $\{G(x)\}, x \in K$, всех таких окрестностей образует открытое покрытие компакта $K$, из которого выделяется конечное покрытие $G(x_1 ), \dots , G(x_n )$. Если теперь $O_i(a)$ — такая окрестность точки $a$, что $G(x_i) \cap O_i(a) = \emptyset$, то множество $O(a) = \bigcap\limits_{i=1}^n O_i(a)$ также является окрестностью точки $a$, причем, очевидно, $K \cap O(a) = \emptyset$. Таким образом, $a$ не может быть предельной точкой для $K$.
+    {\setlength{\parskip}{0pt}
+    \par b) Пусть $F$ — замкнутое в $\mathbb{R}^m$ множество и $F \subset K$. Пусть $\{G_\alpha\}, \alpha \in A$, — покрытие $F$ множествами, открытыми в $\mathbb{R}^m$. Присоединив к нему еще одно открытое множество $G = \mathbb{R}^m \setminus F$ , получим открытое покрытие $\mathbb{R}^m$ и, в частности, $K$, из которого извлекаем конечное покрытие $K$. Это конечное покрытие K будет покрывать также множество $F$. Замечая, что $G \cap F = \emptyset$, можно сказать, что если $G$ входит в это конечное покрытие, то, даже удалив $G$, мы получим конечное покрытие $F$ множествами исходной системы $\{G_\alpha\}, \alpha \in A. \blacktriangleright$}
+
+    \par\textbf{Определение 9.} \textit{Диаметром} множества $E \in \mathbb{R}^m$ называется величина \[d(E):= \sup_{x_1,x_2 \in E} d(x_1 , x_2 )\].
+    \par\textbf{Определение 10.} Множество $E \in \mathbb{R}^m$ называется \textit{ограниченным}, если его диаметр конечен.
+    \par\textbf{Утверждение 4.} \textit{Если $K$ — компакт в $\mathbb{R}^m$, то $K$ — ограниченное подмножество $\mathbb{R}^m$.}
+    \par $\blacktriangleleft$ Возьмем произвольную точку $a \in \mathbb{R}^m$ и рассмотрим последовательность шаров $\{B(a; n)\} (n = 1, 2, \dots )$. Они образуют открытое покрытие $\mathbb{R}^m$, а следовательно, и $K$. Если бы $K$ не было ограниченным множеством, то из этого покрытия нельзя было бы извлечь конечное покрытие $K. \blacktriangleright$
+
+    \newpage
+
+    \begin{center}
+            \begin{spacing}
+            
+                ГЛ. VII. ФУНКЦИИ МНОГИХ ПЕРЕМЕННЫХ
+                \noindent\rule{\textwidth}{1pt}
+            \end{spacing}
+    \end{center}
+    \par\textbf{Утверждение 5.} \textit{Множество $K \subset \mathbb{R}^m$ является компактом в том и только в том случае, если $K$ замкнуто и ограничено в $\mathbb{R}^m$.}
+    \par $\blacktriangleleft$ Необходимость этих условий нами уже показана в утверждениях 3 и 4.
+    {\setlength{\parskip}{0pt}
+    \par Проверим достаточность этих условий. Поскольку $K$ — ограниченное множество, то найдется $m$-мерный промежуток $I$, содержащий $K$. Как было показано в примере 13, $I$ является компактом в $\mathbb{R}^m$. Но если $K$ — замкнутое множество, содержащееся в компакте $I$, то по утверждению 3b) оно само является компактом. $\blacktriangleright$}
+    \par\textbf{Задачи и упражнения}
+
+    {\setlength{\parskip}{0pt}\begin{enumerate}
+        \item \textit{Расстоянием $d(E_1, E_2)$ между множествами} $E_1, E_2 \subset \mathbb{R}^m$ называется величина \[d(E_1, E_2) := \inf_{x_1 \in E, x_2 \in E} d(x_1, x_2).\] Приведите пример замкнутых в $\mathbb{R}^m$ множеств $E_1, E_2$ без общих точек, для которых $d(E_1, E_2) = 0$.
+        \item Покажите, что
+        \begin{itemize}
+            \item [a)] замыкание $\overline{E}$ в $\mathbb{R}^m$ любого множества $E \subset \mathbb{R}^m$ является множеством, замкнутым в $\mathbb{R}^m$;
+            \item [b)] множество $\partial E$ граничных точек любого множества $E \subset \mathbb{R}^m$ является замкнутым множеством;
+            \item [c)] если $G$ — открытое множество в $\mathbb{R}^m$, а $F$ замкнуто в $\mathbb{R}^m$, то $G \setminus F$ — открытое подмножество $\mathbb{R}^m$.
+        \end{itemize}
+        \item Покажите, что если $K_1 \subset K_2 \subset \dots \subset K_n \subset \dots$ — последовательность вложенных компактов, то $\bigcap\limits_{i=1}^{\infty}K_i \neq \emptyset$.
+        \item 
+        \begin{itemize}
+            \item [а)] В пространстве $\mathbb{R}^k$ двумерная сфера $S^2$ и окружность $S^1$ расположились так, что расстояние от любой точки сферы до любой точки окружности одно и то же. Может ли такое быть?
+            \item [b)] Рассмотрите задачу а) для произвольных по размерности сфер $S^m, S^n$ в $\mathbb{R}^k$. При каком соотношении между $m, n$ и $k$ описанная ситуация возможна?
+        \end{itemize}
+    \end{enumerate}}
+        
+    {\setlength{\parskip}{18pt}{\large\textbf{\textsection 2. Предел и непрерывность функции многих переменных}}}
+    \par\textbf{1. Предел функции.} В главе III мы подробно изучили операцию предельного перехода для вещественнозначных функций $f : X \rightarrow \mathbb{R}$, определенных на множестве $X$, в котором фиксирована база \textit{B}.
+    {\setlength{\parskip}{0pt}
+    \par В ближайших параграфах нам предстоит рассматривать функции $f : X \rightarrow \mathbb{R}^n$, определенные на подмножествах пространства $\mathbb{R}^m$, со зна}
+    
+\end{document}
+
+
+
+
+

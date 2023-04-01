@@ -1,0 +1,178 @@
+\documentclass[a5paper]{book}
+\usepackage[english, russian]{babel}
+\usepackage[utf8]{inputenc} % Required for inserting images
+\usepackage{amssymb}
+\usepackage[9pt]{extsizes}
+\usepackage[tracking=true]{microtype}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=15mm, top=15mm, right=15mm, bottom=15mm, nohead, nofoot]{geometry}
+
+\usepackage{ragged2e}
+\setcounter{page}{170}
+
+
+\begin{document}
+\parindent = 0.8cm
+
+\begin{center}
+\hspace{30pt}
+{\scriptsize\centering\textsection ГЛ. V. ДИФФЕРЕНЦИРОВАНИЕ ФУНКЦИЙ ОДНОЙ ПЕРЕМЕННОЙ}
+\hspace{15pt}
+\textbf{[96}\\
+
+\end{center}
+	
+\smallskip
+	
+Например, если 
+$$
+y=\frac{1}{2}\ x^4-\frac{1}{6}\ x^8+2x^2+\frac{4}{3}\ x-\frac{1}{2}\,
+$$
+\noindent то
+$$
+y^{\prime}=2x^3-\frac{1}{2}\ x^2+4x+\frac{4}{3}\, y^{\prime\prime}=6x^2-x+4,
+$$
+$$
+y^{\prime\prime\prime}=12x-1, y^{\prime\prime\prime\prime}=12,
+$$
+\noindent так что все последующие производные равны тождественно нулю. Или Пусть
+$$
+y=\ln (x+\sqrt{x^2+1});
+$$
+\noindent тогда
+$$
+y^\prime=\dfrac{1}{\sqrt{x^2+1}}, y^{\prime\prime}=\dfrac{x}{(x^2+1)^{^3/_2}}, y^{\prime\prime\prime}=\dfrac{2x^2-1}{(x^2+1)^{^5/_2}} и т.д.
+$$
+Заметим, что по отношению к производным высших порядков так же, индуктивно, можно установить понятие \textls{односторонней} производной [ср. $n^{\circ}86$]. Если функция $y=f(x)$ определена лишь в некотором промежутке \slshape X \upshape, то, говоря о производной любого порядка на \textls{конце} его, всегда имеют в виду именно одностороннюю производную.
+
+\smallskip
+	
+\textbf{96. Общие формулы для производных любого порядка.} Итак, для того, чтобы вычислить n-ю производную от какой-либо функции, вообще говоря, нужно предварительно вычислить производные всех предшествующих порядков. Однако в ряде случаев удается установить такое общее выражение для n-й производной, которое зависит непосредственно от n и не содержит более обозначений предшествующих производных.
+
+При выводе таких общих выражений иногда бывают полезны формулы:
+$$
+(cu)^{(n)}=c\cdot u^{(n)}, (u\pm v)^{(n)}=u^{(n)}\pm v^{(n)},
+$$
+обобщающие на случай высших производных известные читателю правила I и II $n^{\circ}83$. Их легко получить последовательным применением этих правил.
+
+1) Рассмотрим сначала степенную функцию $y=x^{\mu}$, где $\mu$-любое вещественное число. Имеем последовательно:
+$$
+y^\prime =\mu x^{\mu-1}, y^{\prime\prime}=\mu(\mu-1)x^{\mu-2},
+$$
+$$
+y^{\prime\prime\prime}=\mu(\mu-1)(\mu-2)x^{\mu-3},\ldots
+$$
+
+\noindent Легко усмотреть отсюда и общий закон:
+$$
+y^{(n)}=\mu(\mu-1)\ldots(\mu-n+1)x^{\mu-n},
+$$
+\noindent который доказывается по методу математической индукции.
+
+Если, например, взять $\mu$=--1, то получим
+$$
+(\frac{1}{x})^(n)=(-1)(-2)\ldots(-n)x^{-1-n}=\dfrac{(-1)^n\cdot n!}{x^{n+1}}.
+$$.
+
+\newpage
+
+	{\normalsize
+ \noindent\textbf{96]}
+ \hspace{15pt}
+\scriptsize\centering \S \ 3.\ \footnotesizeПРОИЗВОДНЫЕ И ДИФФЕРЕНЦИАЛЫ ВЫСШИХ ПОРЯДКОВ}
+ 
+
+\setlength{\parskip}{0.3cm}	
+\smallskip	
+Когда само $\mu$ есть \textls{натуральное} число $m$, то $m$-я производная от $x^{m}$ будет уже постоянным числом $m!$, а все следующие - нулями. Отсюда ясно, что и для целого многочлена степени $m$имеет место аналогичное обстоятельство.
+
+2)Пусть теперь $y=\ln x$. Прежде всего, имеем
+$$
+y^\prime=(\ln x)^\prime=\dfrac{1}{x}.
+$$
+
+Возьмем отсюда производную $(n-1)$-го порядка по соответствующей формуле из 1), заменив в ней $n$ на $n-1$; мы и получим тогда
+$$
+y^{(n)}=(y^\prime)^{(n-1)}=(\frac{1}{x})^{(n-1)}=\dfrac{(-1)^{n-1}(n-1)!}{x^n}.
+$$
+
+3) Если $y=a^x$, то
+$$
+y^\prime=a^x\cdot\ln a, y^{\prime\prime}=a^x\cdot(\ln a)^2,\ldots
+$$
+\noindent Общая формула
+$$
+y^(n)=a^x\cdot(\ln a)^n
+$$ 
+\noindent легко доказывается по методу математической индукции.
+
+В частности, очевидно,
+$$
+(\exp ^x)^{(n)}=\exp ^x.
+$$ 
+
+4) Положим $y=\sin x$; тогда
+$$
+y^\prime=\cos x,  y^{\prime\prime}= -\sin x,  y^{\prime\prime\prime}=---\cos x,
+$$
+$$
+y^{\prime\prime\prime\prime}=\sin x,  y^{(5)}=\cos x,\ldots
+$$
+
+\noindent На этом пути найти требуемое \textls{общее} выражение для $n$-й производной трудно. Но дело сразу упрощается, если переписать формулу для первой производной в виде $y^{\prime}= \sin(x+\frac{\pi }{2})$; становится ясным, что при каждом дифференцировании к аргументу будет прибавляться $\frac{\pi }{2}$, так что
+$$
+(\sin x)^{(n)}=\sin (x+n\cdot\frac{\pi }{2}).
+$$
+\noindent Аналогично получается и формула
+$$
+(\sin x)^{(n)}=\sin (x+n\cdot\frac{\pi }{2}).
+$$
+\newpage
+
+\begin{center}
+\hspace{30pt}
+{\scriptsize\centering\textsection ГЛ. V. ДИФФЕРЕНЦИРОВАНИЕ ФУНКЦИЙ ОДНОЙ ПЕРЕМЕННОЙ}
+\hspace{15pt}
+\textbf{[97}\\
+
+\end{center}
+
+5) Остановимся еще на функции $y=\arctan{x}$. Поставим себе задачей выразить $y^{n}$ через $y$. Так как $x=\tan{y}$, то
+$$
+y^{\prime}=\dfrac{1}{1+x^2}=\cos{y}\cdot\sin{(y+\frac{\pi}{2})}.
+$$
+\noindent Дифференцируя вторично по $x$ (и помня, что $y$ есть функция от $x$), получим
+$$
+y^{\prime\prime}=\left[ {-\sin{y}\cdot\sin(y+\frac{\pi}{2})+\cos{y}\cdot\cos{(y+\frac{\pi}{2})}} \right]\cdot y^{\prime}=
+$$
+$$=\cos^2{y}\cdot\cos{(2y+\frac{\pi}{2})}=\cos^2{y}\cdot\sin 2(2y+\frac{\pi}{2}).
+$$
+\noindent Следующее дифференцирование дает:
+$$
+y^{\prime\prime\prime}=\left[ {-2\sin{y}\cdot\cos{y}2\sin(y+\frac{\pi}{2})+2\cos^2{y}\cdot\cos 2(y+\frac{\pi}{2})} \right]\cdot y^{\prime}=
+$$
+$$
+=2\cos^3{y}\cdot\cos{(3y+2\cdot\frac{\pi}{2})}=2\cos^3{y}\cdot\sin 3(2y+\frac{\pi}{2}).
+$$
+
+Общая формула
+$$
+y^{(n)}=(n-1)!\cos^{n}y\cdot\sin n(y+\frac{\pi}{2})
+$$
+\noindent оправдывается по методу математической индукции.
+
+\textbf{97. Формула Лейбница.} Как мы заметили в начале предыдущего номера, правила I и II $n^{\circ}83$ непосредственно переносятся и на случай производных любого порядка. Сложнее обстоит дело с правилом III, относящимся к дифференцированию произведения.
+Предположим, что функции $u$, $\upsilon$ от $x$ имеют каждая в отдельности производные до $n$-го порядка включительно; докажем, что тогда их произведение $y=u\upsilon$ также имеет $n$-ю производную, найдем ее выражение.
+Станем, применяя правило III, последовательно дифференцировать это произведение; мы найдем:
+$$
+y^{\prime}=u^{\prime}\upsilon + u\upsilon^{\prime},{  } 
+  y^{\prime\prime}=u^{\prime\prime}\upsilon +2u^{\prime}\upsilon^{\prime}+u\upsilon^{\prime\prime},
+$$
+$$
+y^{\prime\prime\prime}=u^{\prime\prime\prime}\upsilon +3u^{\prime\prime}\upsilon^{\prime}+3u^{\prime}\upsilon^{\prime\prime}+u\upsilon^{\prime\prime\prime},\ldots
+$$
+Легко подметить закон, по которому построены все эти формулы: правые части их напоминают разложение стпеней бинома: $(u+\upsilon)^{2}$, $(u+\upsilon)^{3},\ldots,$ лишь вместо степеней $u, \upsilon$ стоят производные соответствующих порядков. Сходство станет более полным, если
+
+\end{document}
