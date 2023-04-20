@@ -20,7 +20,7 @@ void Tree<T>::insert(T val, Node<T> *parent) {
   Node<T> *node = new Node<T>(val);
 
   if (!root && parent) {
-    std::cout << "Error: parent node is null" << '\n';
+    std::cout << "Error: parent node is not in tree" << '\n';
     return;
   }
 
