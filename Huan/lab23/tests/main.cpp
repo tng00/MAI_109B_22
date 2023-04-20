@@ -37,7 +37,7 @@ int main() {
     t.insert(20, &parent);
     t.print(t.root);
     std::cout << "----------------------------\n\n";
-    // Should print "Error: parent node is null"
+    // Should print "Error: parent node is not in tree"
   }
 
   // Test removing a node that is the root of a tree:
