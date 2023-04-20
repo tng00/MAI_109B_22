@@ -19,7 +19,7 @@ template<typename T>
 void Tree<T>::insert(T val, Node<T> *parent) {
   Node<T> *node = new Node<T>(val);
 
-  if (!root && parent) {
+  if (!root && parent || (root && parent != root && !find_parent(root, parent))) {
     std::cout << "Error: parent node is not in tree" << '\n';
     return;
   }
