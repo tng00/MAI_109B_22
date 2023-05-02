@@ -11,6 +11,6 @@
 | [`lab-25`](https://github.com/Maxsmile123/MAI_109B_22/tree/main/Huan/lab25) | None                 |
 | [`lab-26`](https://github.com/Maxsmile123/MAI_109B_22/tree/main/Huan/lab26) | None |
 | [`KP6`](https://github.com/Maxsmile123/MAI_109B_22/tree/main/Huan/KP6)      | None                  |
-| [`KP7`](https://github.com/Maxsmile123/MAI_109B_22/tree/main/Huan/KP7)      | None                  |
+| [`KP7`](https://github.com/Maxsmile123/MAI_109B_22/tree/main/Huan/KP7)      | 1, 11                  |
 | [`KP8`](https://github.com/Maxsmile123/MAI_109B_22/tree/main/Huan/KP8)      | None                 |
 | [`KP9`](https://github.com/Maxsmile123/MAI_109B_22/tree/main/Huan/KP9)      | None                  |
