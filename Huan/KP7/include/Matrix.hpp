@@ -3,14 +3,20 @@
 #include <fstream>
 #include "Vector.hpp"
 
-Vector<int> M, A, M_transposed, A_transposed;
-
-bool inputMatrix(const std::string &file_name);
-void printUsual(bool is_transposed = false);
-void printSchematic(bool is_transposed = false);
-bool isSkewSymmetric();
-void Transpose();
-void checkMatrix(bool transposed);
+class Matrix {
+ public:
+  bool inputMatrix(const std::string &file_name);
+  void printUsual();
+  void printSchematic();
+  void checkMatrix();
+ private:
+  Vector<int> M, A, M_transposed, A_transposed;
+  bool is_transposed = false;
+  bool print_transposed = false;
+  bool isSkewSymmetric();
+  void transpose();
+  void clearVectors();
+};
 
 #include "../src/Matrix.cpp"
 
