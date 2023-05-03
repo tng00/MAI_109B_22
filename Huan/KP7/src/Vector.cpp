@@ -2,47 +2,48 @@
 
 template<class T, class Allocator>
 Vector<T, Allocator>::Vector() : size_(0), capacity_(0) {
-  data_ = allocator_.allocate(capacity_);
+  data_ = allocator_.allocate(capacity());
 }
 
 template<class T, class Allocator>
-Vector<T, Allocator>::Vector(size_t count, const T &value) : size_(count), capacity_(calculateCapacity(count)) {
-  data_ = allocator_.allocate(capacity_);
-  std::fill_n(data_, count, value);
+Vector<T, Allocator>::Vector(size_t count, const T &value) : size_(count), capacity_(0) {
+  capacity_ = calculateCapacity(count);
+  data_ = allocator_.allocate(capacity());
+  std::fill_n(data(), count, value);
 }
 
 template<class T, class Allocator>
 Vector<T, Allocator>::Vector(const Vector &other) {
-  size_ = other.size();
+  this->resize(other.size());
   capacity_ = other.capacity();
-  data_ = allocator_.allocate(capacity_);
-  std::copy(other.begin(), other.end(), data_);
+  std::copy(other.begin(), other.end(), data());
 }
 
 template<class T, class Allocator>
 Vector<T, Allocator>::Vector(Vector &&other) noexcept {
-  size_ = other.size();
-  capacity_ = other.capacity();
-  data_ = allocator_.allocate(capacity_);
-  std::move(other.begin(), other.end(), data_);
+  std::swap(size_, other.size_);
+  std::swap(capacity_, other.capacity_);
+  std::swap(data_, other.data_);
   other.clear();
 }
 
 template<class T, class Allocator>
-Vector<T, Allocator>::Vector(std::initializer_list<T> init) {
+Vector<T, Allocator>::Vector(const std::initializer_list<T>& init) {
   size_ = init.size();
-  capacity_ = calculateCapacity(size_);
-  data_ = allocator_.allocate(capacity_);
-  std::copy(init.begin(), init.end(), data_);
+  capacity_ = calculateCapacity(size());
+  data_ = allocator_.allocate(capacity());
+  std::copy(init.begin(), init.end(), data());
 }
 
 template<class T, class Allocator>
 Vector<T, Allocator>::~Vector() {
   if (data_ != nullptr) {
-    for (size_t i = 0; i < size(); i++) {
+    for (size_t i = 0; i < size(); ++i) {
       allocator_.destroy(&data_[i]);
     }
-    allocator_.deallocate(data_, capacity());
+    if (capacity_ > 0) {
+      allocator_.deallocate(data(), capacity());
+    }
     data_ = nullptr;
   }
 }
@@ -54,8 +55,8 @@ Vector<T, Allocator> &Vector<T, Allocator>::operator=(const Vector &other) {
   }
   size_ = other.size();
   capacity_ = other.capacity();
-  data_ = allocator_.allocate(capacity_);
-  std::copy(other.begin(), other.end(), data_);
+  data_ = allocator_.allocate(capacity());
+  std::copy(other.begin(), other.end(), data());
   return *this;
 }
 
@@ -72,7 +73,6 @@ const T &Vector<T, Allocator>::at(size_t pos) const {
   if (pos < size()) {
     return data_[pos];
   }
-
   throw std::out_of_range("position is out of range");
 }
 
@@ -145,16 +145,21 @@ template<class T, class Allocator>
 void Vector<T, Allocator>::reserve(size_t new_cap) {
   if (new_cap > capacity()) {
     reallocate(new_cap);
+    capacity_ = new_cap;
   }
-  capacity_ = new_cap;
 }
 
 template<class T, class Allocator>
 void Vector<T, Allocator>::shrink_to_fit() {
-  for (size_t i = size(); i < capacity(); i++) {
-    allocator_.destroy(data() + i);
+  if (capacity() > size()) {
+    for (size_t i = size(); i < capacity(); ++i) {
+      allocator_.destroy(data() + i);
+    }
+    if (capacity() - size() > 0) {
+      allocator_.deallocate(data() + size(), capacity() - size());
+    }
+    capacity_ = size();
   }
-  capacity_ = size();
 }
 
 template<class T, class Allocator>
@@ -199,7 +204,7 @@ void Vector<T, Allocator>::emplace_back(Args &&... args) {
 
 template<class T, class Allocator>
 void Vector<T, Allocator>::pop_back() {
-  if (size_ > 0) {
+  if (size() > 0) {
     allocator_.destroy(end() - 1);
     --size_;
   }
@@ -213,12 +218,12 @@ void Vector<T, Allocator>::resize(size_t count) {
 template<class T, class Allocator>
 void Vector<T, Allocator>::resize(size_t count, const T &value) {
   if (count > capacity()) {
-    reallocate(count);
-    for (size_t i = size(); i < count; i++) {
+    this->reserve(count);
+    for (size_t i = size(); i < count; ++i) {
       allocator_.construct(data() + i, value);
     }
   } else if (count < size()) {
-    for (size_t i = count; i < size(); i++) {
+    for (size_t i = count; i < size(); ++i) {
       allocator_.destroy(data() + i);
     }
   }
@@ -227,12 +232,19 @@ void Vector<T, Allocator>::resize(size_t count, const T &value) {
 
 template<class T, class Allocator>
 [[nodiscard]] size_t Vector<T, Allocator>::calculateCapacity(size_t newSize) const {
-  if (capacity() > std::numeric_limits<size_t>::max(); - capacity() / 2) {
-    return newSize;
+  std::size_t newCapacity;
+  if (newSize < capacity()) {
+    newCapacity = 1;
+  } else if (capacity()){
+    newCapacity = capacity();
+  } else {
+    newCapacity = 1;
   }
-  const size_t newCapacity = capacity() * 1.5;
-  if (newCapacity < newSize) {
-    return newSize;
+  while (newCapacity < newSize) {
+    if (newCapacity >= std::numeric_limits<size_t>::max() - newCapacity) {
+      return std::numeric_limits<size_t>::max();
+    }
+    newCapacity *= 2;
   }
   return newCapacity;
 }
@@ -241,11 +253,13 @@ template<class T, class Allocator>
 void Vector<T, Allocator>::reallocate(size_t minSize) {
   const size_t newCapacity = calculateCapacity(minSize);
   T *newData = allocator_.allocate(newCapacity);
-  for (size_t i = 0; i < size_; i++) {
+  for (size_t i = 0; i < size(); i++) {
     allocator_.construct(&newData[i], std::move(data_[i]));
     allocator_.destroy(&data_[i]);
   }
-  allocator_.deallocate(data_, capacity());
+  if (capacity_ > 0) {
+    allocator_.deallocate(data(), capacity());
+  }
   data_ = newData;
   capacity_ = newCapacity;
 }
@@ -255,7 +269,7 @@ bool operator==(const Vector<T, Allocator> &lhs, const Vector<T, Allocator> &rhs
   if (lhs.size() != rhs.size()) {
     return false;
   }
-  for (int i = 0; i < lhs.size(); i++) {
+  for (size_t i = 0; i < lhs.size(); ++i) {
     if (lhs.at(i) != rhs.at(i)) {
       return false;
     }
