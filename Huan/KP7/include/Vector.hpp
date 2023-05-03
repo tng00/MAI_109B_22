@@ -10,7 +10,7 @@ class Vector {
   explicit Vector(size_t count, const T &value = T());
   Vector(const Vector &other);
   Vector(Vector &&other) noexcept;
-  Vector(std::initializer_list<T> init);
+  Vector(const std::initializer_list<T>& init);
   ~Vector();
   Vector &operator=(const Vector &other);
 
@@ -20,8 +20,6 @@ class Vector {
   const T &operator[](size_t pos) const;
   T &back();
   const T &back() const;
-  T *data() noexcept;
-  const T *data() const noexcept;
   T* begin() noexcept;
   const T* begin() const noexcept;
   T* end() noexcept;
@@ -50,6 +48,8 @@ class Vector {
   T *data_;
   Allocator allocator_;
 
+  T *data() noexcept;
+  const T *data() const noexcept;
   [[nodiscard]] size_t calculateCapacity(size_t newSize) const;
   void reallocate(size_t minSize);
 };
