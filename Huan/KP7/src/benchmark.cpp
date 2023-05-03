@@ -1,4 +1,3 @@
-#include <iostream>
 #include <vector>
 #include "../include/Vector.hpp"
 #include <chrono>
@@ -21,7 +20,7 @@ void benchmark(){
 
   begin = std::chrono::steady_clock::now();
   Vector<int> Vec2;
-  for (int64_t pushValue = 0; pushValue < 10000; ++pushValue){
+  for (int64_t pushValue = 0; pushValue < 1000000; ++pushValue){
     Vec2.push_back(pushValue);
   }
   end = std::chrono::steady_clock::now();
@@ -29,7 +28,7 @@ void benchmark(){
 
   begin = std::chrono::steady_clock::now();
   std::vector<int> vec2;
-  for (int64_t pushValue = 0; pushValue < 10000; ++pushValue){
+  for (int64_t pushValue = 0; pushValue < 1000000; ++pushValue){
     vec2.push_back(pushValue);
   }
   end = std::chrono::steady_clock::now();
@@ -39,14 +38,14 @@ void benchmark(){
   std::cout << "By-pass:" << std::endl;
 
   begin = std::chrono::steady_clock::now();
-  for (int64_t passCount = 0; passCount < 10000; ++passCount){
+  for (int64_t passCount = 0; passCount < 1000000; ++passCount){
     int a = Vec2[passCount];
   }
   end = std::chrono::steady_clock::now();
   std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "[ms]" << std::endl;
 
   begin = std::chrono::steady_clock::now();
-  for (int64_t passCount = 0; passCount < 10000; ++passCount){
+  for (int64_t passCount = 0; passCount < 1000000; ++passCount){
     int a = vec2[passCount];
   }
   end = std::chrono::steady_clock::now();
@@ -56,14 +55,14 @@ void benchmark(){
   std::cout << "Pop_back:" << std::endl;
 
   begin = std::chrono::steady_clock::now();
-  for (int64_t popCount = 0; popCount < 10000; ++popCount){
+  for (int64_t popCount = 0; popCount < 1000000; ++popCount){
     Vec2.pop_back();
   }
   end = std::chrono::steady_clock::now();
   std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "[ms]" << std::endl;
 
   begin = std::chrono::steady_clock::now();
-  for (int64_t popCount = 0; popCount < 10000; ++popCount){
+  for (int64_t popCount = 0; popCount < 1000000; ++popCount){
     vec2.pop_back();
   }
   end = std::chrono::steady_clock::now();
@@ -185,5 +184,6 @@ void benchmark(){
     end = std::chrono::steady_clock::now();
     std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "[ms]" << std::endl;
   }
+
   std::cout << std::endl;
 }
