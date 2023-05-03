@@ -1,13 +1,13 @@
 #include "../include/Matrix.hpp"
 
-bool inputMatrix(const std::string &file_name) {
+
+bool Matrix::inputMatrix(const std::string &file_name) {
+  clearVectors();
   std::ifstream fin("../tests/inputs/" + file_name);
   if (!fin.is_open()) {
     std::cout << "File is not opened\n";
     return false;
   }
-  M.clear();
-  A.clear();
   int rows, cols;
   fin >> rows >> cols;
   for (size_t i = 0; i < rows; ++i) {
@@ -38,8 +38,12 @@ bool inputMatrix(const std::string &file_name) {
   return true;
 }
 
-void printUsual(bool is_transposed) {
-  if (is_transposed) {
+void Matrix::printUsual() {
+  if (M.empty()) {
+    std::cout << "Input the matrix first!\n\n";
+    return;
+  }
+  if (print_transposed) {
     Vector<int> &M_ = M_transposed;
     Vector<int> &A_ = A_transposed;
     std::cout << "This is the usual form of the transposed matrix:\n";
@@ -122,8 +126,12 @@ void printUsual(bool is_transposed) {
   std::cout << '\n';
 }
 
-void printSchematic(bool is_transposed) {
-  if (is_transposed) {
+void Matrix::printSchematic() {
+  if (M.empty()) {
+    std::cout << "Input the matrix first!\n\n";
+    return;
+  }
+  if (print_transposed) {
     Vector<int> &M_ = M_transposed;
     Vector<int> &A_ = A_transposed;
     std::cout << "This is a schematic form of the transposed matrix:\nM: ";
@@ -150,7 +158,7 @@ void printSchematic(bool is_transposed) {
   std::cout << '\n' << '\n';
 }
 
-bool isSkewSymmetric() {
+bool Matrix::isSkewSymmetric() {
   for (size_t row = 0; row < M_transposed.size(); ++row) {
     if (M_transposed[row] == -1) {
       continue;
@@ -190,7 +198,7 @@ bool isSkewSymmetric() {
   return true;
 }
 
-void Transpose() {
+void Matrix::transpose() {
   int rows = M.size(), cols = M.size();
   for (int col = cols - 1; col >= 0; --col) {
     bool first_in_row = true;
@@ -235,16 +243,31 @@ void Transpose() {
   }
 }
 
-void checkMatrix(bool transposed) {
-  if (!transposed) {
-    Transpose();
-  }
-  printUsual(true);
-  printSchematic(true);
-  if (isSkewSymmetric()) {
-    std::cout << "Transposed matrix is skew symmetric!" << "\n\n";
+void Matrix::checkMatrix() {
+  if (M.empty()) {
+    std::cout << "Input the matrix first!\n\n";
     return;
   }
-  std::cout << "Transposed matrix is not skew symmetric!" << "\n\n";
+  if (!is_transposed) {
+    transpose();
+    is_transposed = true;
+  }
+  print_transposed = true;
+  printUsual();
+  printSchematic();
+  if (isSkewSymmetric()) {
+    std::cout << "Transposed matrix is skew symmetric!" << "\n\n";
+  } else {
+    std::cout << "Transposed matrix is not skew symmetric!" << "\n\n";
+  }
+  print_transposed = false;
 }
 
+void Matrix::clearVectors() {
+  A_transposed.clear();
+  M_transposed.clear();
+  A.clear();
+  M.clear();
+  is_transposed = false;
+  print_transposed = false;
+}
