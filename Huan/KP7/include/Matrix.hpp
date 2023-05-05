@@ -6,15 +6,27 @@
 class Matrix {
  public:
   bool inputMatrix(const std::string &file_name);
+  
   void printUsual();
+  
   void printSchematic();
+  
   void checkMatrix();
+  
+  
  private:
-  Vector<int> M, A, M_transposed, A_transposed;
+  Vector<int> M;
+  Vector<int> A;
+  Vector<int> M_transposed;
+  Vector<int> A_transposed;
+  
   bool is_transposed = false;
   bool print_transposed = false;
-  bool isSkewSymmetric();
+  
   void transpose();
+  
+  bool isSkewSymmetric();
+  
   void clearVectors();
 };
 
