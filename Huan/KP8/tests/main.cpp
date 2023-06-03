@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  benchmark();
+  //benchmark();
   std::cout << "Benchmark finished!\n\n\n";
   List<int64_t> x;
   cout << "Created List\n\n\n";
@@ -70,10 +70,10 @@ int main() {
   x.reverse();
   cout << x;
 
-  cout << "\n\nLab_erase test:\nErase range [begin() + 8, end() - 5]\n";
+  cout << "\n\nLab_erase test:\nErase range [begin() + 8, end() - 5)\n";
   x.lab_erase(x.begin() + 8, x.end() - 5);
   cout << x;
-  cout << "Erase range [end() - 4, end()]\n";
+  cout << "Erase range [end() - 4, end())\n";
   x.lab_erase(x.end() - 4, x.end());
   cout << x;
 
