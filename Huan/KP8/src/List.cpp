@@ -6,6 +6,8 @@ List<T>::List() {
   barrier_->next_ = barrier_;
   barrier_->prev_ = barrier_;
   size_ = 0;
+  begin_ = Iterator(barrier_);
+  end_ = Iterator(barrier_);
 }
 
 template<typename T>
@@ -17,27 +19,31 @@ List<T>::~List() {
     delete temp_node;
   }
   delete barrier_;
-  barrier_ = nullptr;
-  size_ = 0;
 }
 
 template<typename T>
-Iterator<T> List<T>::begin() const {
-  Iterator<T> temp(barrier_->next_);
-  return temp;
+Iterator<T> List<T>::begin() {
+  return begin_;
 }
 
 template<typename T>
-Iterator<T> List<T>::end() const {
-  Iterator<T> temp(barrier_);
-  return temp;
+Iterator<T> List<T>::end() {
+  return end_;
+}
+
+template<typename T>
+const Iterator<T> List<T>::begin() const {
+  return begin_;
+}
+
+template<typename T>
+const Iterator<T> List<T>::end() const {
+  return end_;
 }
 
 template<typename T>
 bool List<T>::empty() const {
-  Iterator<T> first = this->begin();
-  Iterator<T> last = this->end();
-  return first == last;
+  return begin_ == end_;
 }
 
 template<typename T>
@@ -46,18 +52,15 @@ size_t List<T>::size() const {
 }
 
 template<typename T>
-bool List<T>::find(Iterator<T> first, Iterator<T> last, const T &value) const {
+Iterator<T> List<T>::find(Iterator<T> first, Iterator<T> last, const T &value) const {
   Iterator<T> cur = first;
   while (cur != last) {
     if (*cur == value) {
-      return true;
+      return cur;
     }
     ++cur;
   }
-  if (last == this->end() && *last == value) {
-    return true;
-  }
-  return false;
+  return end_;
 }
 
 template<typename T>
@@ -69,19 +72,27 @@ Iterator<T> List<T>::insert(Iterator<T> pos, const T &value) {
   pos.node_->prev_->next_ = temp_node;
   pos.node_->prev_ = temp_node;
   ++size_;
-  return Iterator<T>(temp_node);
+  if (size_ == 1) {
+    begin_ = begin_ + 1;
+  } else if (pos == begin_) {
+    begin_ = begin_ - 1;
+  }
+  return pos - 1;
 }
 
 template<typename T>
 Iterator<T> List<T>::erase(Iterator<T> pos) {
-  Iterator<T> res = this->end();
-  if (res == pos) {
-    return res;
+  if (pos == end_) {
+    return end_;
   }
+  Iterator<T> res;
   res.node_ = pos.node_->next_;
   res.node_->prev_ = pos.node_->prev_;
   pos.node_->prev_->next_ = res.node_;
   --size_;
+  if (pos == begin_) {
+    begin_ = begin_ + 1;
+  }
   delete pos.node_;
   return res;
 }
@@ -93,18 +104,17 @@ void List<T>::lab_erase(Iterator<T> first, Iterator<T> last) {
   }
   Iterator<T> head = this->begin();
   while (head != first) {
-    if (find(first, last, *head)) {
+    if (find(first, last, *head) != end_) {
       this->erase(head);
     }
     ++head;
   }
   if (last != this->end()) {
-    Iterator<T> tail = last + 1;
-    while (tail != this->end()) {
-      if (find(first, last, *tail)) {
+    Iterator<T> tail = last;
+    while (++tail != this->end()) {
+      if (find(first, last, *tail) != end_) {
         this->erase(tail);
       }
-      ++tail;
     }
   }
   Iterator<T> it = first;
@@ -141,7 +151,7 @@ void List<T>::emplace_back() {
 template<typename T>
 template<typename... Args>
 void List<T>::emplace_back(const T &first, const Args &...args) {
-  push_back(first);
+  insert(this->end(), first);
   emplace_back(args...);
 }
 
@@ -159,10 +169,11 @@ void List<T>::reverse() {
     curr = next;
   }
   barrier_->next_ = prev;
+  begin_.node_ = prev;
 }
 
 template<typename T>
-std::ostream &operator<<(std::ostream &out, List<T> &l)  {
+std::ostream &operator<<(std::ostream &out, List<T> &l) {
   for (Iterator<T> it = l.begin(); it != l.end(); ++it) {
     out << *it << ' ';
   }
