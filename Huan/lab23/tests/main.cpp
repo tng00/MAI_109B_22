@@ -168,4 +168,27 @@ int main() {
     //         11
     //           12
   }
+
+  // Test finding node
+  {
+    Tree<int> t;
+    t.insert(1);
+    t.insert(2, t.get_root());
+    t.insert(3, t.get_root());
+    t.insert(4, t.get_root()->get_child(0));
+    t.insert(5, t.get_root()->get_child(0));
+    t.insert(6, t.get_root()->get_child(0));
+    t.insert(7, t.get_root()->get_child(1));
+    t.insert(8, t.get_root());
+    t.insert(9, t.get_root()->get_child(2));
+    t.insert(10, t.get_root()->get_child(2)->get_child(0));
+    t.insert(11, t.get_root()->get_child(2)->get_child(0)->get_child(0));
+    t.insert(12, t.get_root()->get_child(2)->get_child(0)->get_child(0)->get_child(0));
+    assert(t.find(12, t.get_root())->get_value() == 12);
+    assert(t.find(11, t.get_root())->get_value() == 11);
+    assert(t.find(10, t.get_root())->get_value() == 10);
+    assert(t.find(5, t.get_root())->get_value() == 5);
+    assert(t.find(1, t.get_root())->get_value() == 1);
+    assert(t.find(100000, t.get_root()) == nullptr);
+  }
 }
