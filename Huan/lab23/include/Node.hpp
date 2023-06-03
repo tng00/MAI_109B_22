@@ -1,7 +1,6 @@
 #ifndef INCLUDE_NODE_HPP_
 #define INCLUDE_NODE_HPP_
 #include <iostream>
-#include <algorithm>
 
 template<typename T>
 class Tree;
