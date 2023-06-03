@@ -9,7 +9,7 @@ Node<T>::Node(const T &val) {
 
 template<typename T>
 Node<T>::~Node() {
-  for (size_t i = 0; i < num_children; i++) {
+  for (size_t i = 0; i < num_children; ++i) {
     delete children[i];
   }
   delete[] children;
