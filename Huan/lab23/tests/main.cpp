@@ -8,25 +8,25 @@ int main() {
   {
     Tree<int> t;
     t.insert(1);
-    assert(t.root->get_value() == 1);
+    assert(t.get_root()->get_value() == 1);
   }
 
   // Test inserting a child node to the root of a tree:
   {
     Tree<int> t;
     t.insert(1);
-    t.insert(2, t.root);
-    assert(t.root->children[0]->get_value() == 2);
+    t.insert(2, t.get_root());
+    assert(t.get_root()->get_child(0)->get_value() == 2);
   }
 
   // Test inserting multiple child nodes to the root of a tree:
   {
     Tree<int> t;
     t.insert(1);
-    t.insert(2, t.root);
-    t.insert(3, t.root);
-    assert(t.root->children[0]->get_value() == 2);
-    assert(t.root->children[1]->get_value() == 3);
+    t.insert(2, t.get_root());
+    t.insert(3, t.get_root());
+    assert(t.get_root()->get_child(0)->get_value() == 2);
+    assert(t.get_root()->get_child(1)->get_value() == 3);
   }
 
   // 1. Test inserting a node with a parent that does not exist:
@@ -35,7 +35,7 @@ int main() {
     Node<int> parent(10);
     std::cout << "1.\n";
     t.insert(20, &parent);
-    t.print(t.root);
+    t.print(t.get_root());
     std::cout << "----------------------------\n\n";
     // Should print "Error: parent node is not in tree"
   }
@@ -44,30 +44,30 @@ int main() {
   {
     Tree<int> t;
     t.insert(1);
-    t.remove(t.root);
-    assert(t.root == nullptr);
+    t.remove(t.get_root());
+    assert(t.get_root() == nullptr);
   }
 
   // Test removing a child node from a tree:
   {
     Tree<int> t;
     t.insert(1);
-    t.insert(2, t.root);
-    t.insert(3, t.root);
-    t.remove(t.root->children[0]);
-    assert(t.root->get_num_children() == 1);
-    assert(t.root->children[0]->get_value() == 3);
+    t.insert(2, t.get_root());
+    t.insert(3, t.get_root());
+    t.remove(t.get_root()->get_child(0));
+    assert(t.get_root()->get_num_children() == 1);
+    assert(t.get_root()->get_child(0)->get_value() == 3);
   }
 
   // Test removing a node that is not in the tree:
   {
     Tree<int> t;
     t.insert(1);
-    t.insert(2, t.root);
-    t.insert(3, t.root);
+    t.insert(2, t.get_root());
+    t.insert(3, t.get_root());
     Node<int> n(4);
     t.remove(&n);
-    assert(t.root->get_num_children() == 2);
+    assert(t.get_root()->get_num_children() == 2);
   }
 
   // Test finding the depth of an empty tree:
@@ -87,11 +87,11 @@ int main() {
   {
     Tree<int> t;
     t.insert(1);
-    t.insert(2, t.root);
-    t.insert(3, t.root);
-    t.insert(4, t.root->children[0]);
-    t.insert(5, t.root->children[0]);
-    t.insert(6, t.root->children[1]);
+    t.insert(2, t.get_root());
+    t.insert(3, t.get_root());
+    t.insert(4, t.get_root()->get_child(0));
+    t.insert(5, t.get_root()->get_child(0));
+    t.insert(6, t.get_root()->get_child(1));
     assert(t.depth() == 3);
   }
 
@@ -99,7 +99,7 @@ int main() {
   {
     Tree<int> t;
     std::cout << "2.\n";
-    t.print(t.root);
+    t.print(t.get_root());
     std::cout << "----------------------------\n\n";
     // Expect no output
   }
@@ -109,7 +109,7 @@ int main() {
     Tree<int> t;
     t.insert(1);
     std::cout << "3.\n";
-    t.print(t.root);
+    t.print(t.get_root());
     std::cout << "----------------------------\n\n";
     // Expect output: 1
   }
@@ -118,13 +118,13 @@ int main() {
   {
     Tree<int> t;
     t.insert(1);
-    t.insert(2, t.root);
-    t.insert(3, t.root);
-    t.insert(4, t.root->children[0]);
-    t.insert(5, t.root->children[0]);
-    t.insert(6, t.root->children[1]);
+    t.insert(2, t.get_root());
+    t.insert(3, t.get_root());
+    t.insert(4, t.get_root()->get_child(0));
+    t.insert(5, t.get_root()->get_child(0));
+    t.insert(6, t.get_root()->get_child(1));
     std::cout << "4.\n";
-    t.print(t.root);
+    t.print(t.get_root());
     std::cout << "----------------------------\n\n";
     // Expect output:
     // 1
@@ -139,19 +139,19 @@ int main() {
   {
     Tree<int> t;
     t.insert(1);
-    t.insert(2, t.root);
-    t.insert(3, t.root);
-    t.insert(4, t.root->children[0]);
-    t.insert(5, t.root->children[0]);
-    t.insert(6, t.root->children[1]);
-    t.insert(7, t.root->children[1]);
-    t.insert(8, t.root);
-    t.insert(9, t.root->children[2]);
-    t.insert(10, t.root->children[2]->children[0]);
-    t.insert(11, t.root->children[2]->children[0]->children[0]);
-    t.insert(12, t.root->children[2]->children[0]->children[0]->children[0]);
+    t.insert(2, t.get_root());
+    t.insert(3, t.get_root());
+    t.insert(4, t.get_root()->get_child(0));
+    t.insert(5, t.get_root()->get_child(0));
+    t.insert(6, t.get_root()->get_child(0));
+    t.insert(7, t.get_root()->get_child(1));
+    t.insert(8, t.get_root());
+    t.insert(9, t.get_root()->get_child(2));
+    t.insert(10, t.get_root()->get_child(2)->get_child(0));
+    t.insert(11, t.get_root()->get_child(2)->get_child(0)->get_child(0));
+    t.insert(12, t.get_root()->get_child(2)->get_child(0)->get_child(0)->get_child(0));
     std::cout << "5.\n";
-    t.print(t.root);
+    t.print(t.get_root());
     std::cout << "----------------------------\n\n";
     assert(t.depth() == 6);
     // Expect output:
