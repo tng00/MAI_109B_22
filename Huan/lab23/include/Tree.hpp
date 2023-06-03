@@ -5,17 +5,19 @@
 template<typename T>
 class Tree {
  public:
-  Node<T> *root;
-  Tree();
+  Tree() : root(nullptr) {}
   ~Tree();
 
-  int depth() const;
+  [[nodiscard]] size_t depth() const;
+  Node<T> *get_root();
+
   void insert(T val, Node<T> *parent = nullptr);
-  void print(Node<T> *node, int depth = 0, bool check_node = true) const;
+  void print(Node<T> *node, size_t depth = 0, bool check_node = true) const;
   void remove(Node<T> *node);
 
  private:
-  int depth_helper(const Node<T> *node) const;
+  Node<T> *root;
+  size_t depth_helper(const Node<T> *node) const;
   Node<T> *find_parent(Node<T> *node, Node<T> *child) const;
 };
 
