@@ -4,10 +4,12 @@
 #include <algorithm>
 
 template<typename T>
+class Tree;
+
+template<typename T>
 class Node {
  public:
-  Node<T> **children;
-
+  friend class Tree<T>;
   explicit Node(const T &val);
   ~Node();
 
@@ -21,6 +23,7 @@ class Node {
  private:
   T value;
   size_t num_children;
+  Node<T> **children;
 };
 
 #include "../src/Node.cpp"
