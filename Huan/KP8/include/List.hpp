@@ -9,12 +9,14 @@ class List {
   List();
   ~List();
 
-  Iterator<T> begin() const;
-  Iterator<T> end() const;
+  Iterator<T> begin();
+  Iterator<T> end();
+  const Iterator<T> begin() const;
+  const Iterator<T> end() const;
 
-  bool empty() const;
+  [[nodiscard]] bool empty() const;
   [[nodiscard]] size_t size() const;
-  bool find(Iterator<T> first, Iterator<T> last, const T &value) const;
+  Iterator<T> find(Iterator<T> first, Iterator<T> last, const T &value) const;
 
   Iterator<T> insert(Iterator<T> pos, const T &value);
   Iterator<T> erase(Iterator<T> pos);
@@ -35,6 +37,9 @@ class List {
  private:
   Node<T> *barrier_;
   size_t size_;
+
+  Iterator<T> begin_;
+  Iterator<T> end_;
 };
 
 #include "../src/List.cpp"
