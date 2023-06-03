@@ -25,15 +25,11 @@ template<typename T>
 Iterator<T> Iterator<T>::operator+(int64_t num) {
   if (num > 0) {
     while (num-- && node_) {
-      if (node_) {
-        node_ = node_->next_;
-      }
+      node_ = node_->next_;
     }
   } else if (num < 0) {
     while (num++ && node_) {
-      if (node_) {
-        node_ = node_->prev_;
-      }
+      node_ = node_->prev_;
     }
   }
   return *this;
