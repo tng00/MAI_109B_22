@@ -16,6 +16,25 @@ Node<T> *Tree<T>::get_root() {
 }
 
 template<typename T>
+Node<T> *Tree<T>::find(const T &val, Node<T> *node) {
+  if (!node) {
+    return nullptr;
+  }
+  if (node->value == val) {
+    return node;
+  }
+  for (size_t i = 0; i < node->get_num_children(); ++i) {
+    if (node->get_child(i)->value == val) {
+      return node->get_child(i);
+    }
+    auto tmp = find(val, node->get_child(i));
+    if (tmp) {
+      return tmp;
+    }
+  }
+}
+
+template<typename T>
 void Tree<T>::insert(T val, Node<T> *parent) {
   Node<T> *node = new Node<T>(val);
 
