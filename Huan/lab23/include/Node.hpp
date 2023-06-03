@@ -8,17 +8,19 @@ class Node {
  public:
   Node<T> **children;
 
-  Node(T val);
+  explicit Node(const T &val);
   ~Node();
 
   T get_value() const;
-  int  get_num_children() const;
+  Node<T> *get_child(size_t i);
+  [[nodiscard]] size_t get_num_children() const;
+
   void add_child(Node<T> *child);
   void remove_child(Node<T> *child);
 
  private:
   T value;
-  int num_children;
+  size_t num_children;
 };
 
 #include "../src/Node.cpp"
