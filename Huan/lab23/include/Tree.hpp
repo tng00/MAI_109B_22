@@ -10,6 +10,7 @@ class Tree {
 
   [[nodiscard]] size_t depth() const;
   Node<T> *get_root();
+  Node<T> *find(const T &val, Node<T> *node);
 
   void insert(T val, Node<T> *parent = nullptr);
   void print(Node<T> *node, size_t depth = 0, bool check_node = true) const;
