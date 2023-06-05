@@ -1,6 +1,5 @@
 #ifndef LAB26_INCLUDE_ITERATOR_HPP_
 #define LAB26_INCLUDE_ITERATOR_HPP_
-#include "Node.hpp"
 
 template<typename T>
 class Queue;
