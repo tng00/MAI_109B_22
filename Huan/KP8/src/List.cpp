@@ -65,8 +65,7 @@ Iterator<T> List<T>::find(Iterator<T> first, Iterator<T> last, const T &value) c
 
 template<typename T>
 Iterator<T> List<T>::insert(Iterator<T> pos, const T &value) {
-  T temp_value = value;
-  auto *temp_node = new Node<T>(temp_value);
+  auto *temp_node = new Node<T>(value);
   temp_node->next_ = pos.node_;
   temp_node->prev_ = pos.node_->prev_;
   pos.node_->prev_->next_ = temp_node;
