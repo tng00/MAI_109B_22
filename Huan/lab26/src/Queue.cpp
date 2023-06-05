@@ -23,7 +23,6 @@ void Queue<T>::push(const T &value) {
 template<typename T>
 void Queue<T>::pop() {
   if (empty()) {
-    std::cout << "Queue is empty. Cannot pop.\n";
     return;
   }
 
@@ -36,7 +35,6 @@ void Queue<T>::pop() {
 template<typename T>
 T &Queue<T>::getFront() const {
   if (empty()) {
-    std::cout << "Queue is empty. No front element.\n";
     static T defaultValue;
     return defaultValue;
   }
