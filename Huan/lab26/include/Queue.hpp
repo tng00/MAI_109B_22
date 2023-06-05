@@ -9,7 +9,7 @@ class Queue {
  private:
   Node<T> *front;
   Node<T> *rear;
-  int size;
+  size_t size;
 
  public:
   Queue() : front(nullptr), rear(nullptr), size(0) {}
