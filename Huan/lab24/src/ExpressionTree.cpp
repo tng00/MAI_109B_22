@@ -185,7 +185,7 @@ std::string ExpressionTree::convertToReversePolish(const std::string &str) {
   return result;
 }
 
-void ExpressionTree::makeInfixExpression(Node *root) {
+void ExpressionTree::makeInfixExpression(const Node *root) {
   if (root == nullptr) {
     return;
   }
@@ -265,7 +265,7 @@ void ExpressionTree::printTree(Node const *first,
   }
 }
 
-void ExpressionTree::getCoefficients(Node *root, char coefficient) {
+void ExpressionTree::getCoefficients(const Node *root, char coefficient) {
   if (root == nullptr) {
     return;
   }
@@ -295,11 +295,11 @@ void ExpressionTree::getCoefficients(Node *root, char coefficient) {
   getCoefficients(root->right, coefficient);
 }
 
-std::pair<Node *, char> ExpressionTree::factorizeQuadraticExpressionHelper(Node *node) {
+std::pair<Node *, char> ExpressionTree::factorizeQuadraticExpressionHelper(const Node *node) {
   if (node) {
     if (isdigit(node->data)) {
       getCoefficients(node, 'c');
-      return {node, 'c'};
+      return {const_cast<Node *>(node), 'c'};
     }
 
     if (node->data == '*') {
@@ -348,7 +348,7 @@ std::pair<Node *, char> ExpressionTree::factorizeQuadraticExpressionHelper(Node 
   }
 }
 
-void ExpressionTree::factorizeQuadraticExpression(Node *root) {
+void ExpressionTree::factorizeQuadraticExpression(const Node *root) {
   if (root == nullptr) {
     std::cout << "Empty trinomial!\n";
     return;
