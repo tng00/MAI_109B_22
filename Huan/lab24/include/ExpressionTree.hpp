@@ -15,10 +15,10 @@ class ExpressionTree {
   ~ExpressionTree() = default;
 
   std::string convertToReversePolish(const std::string &str);
-  void makeInfixExpression(Node *root);
+  void makeInfixExpression(const Node *root);
   Node *constructTree(const std::string &postfix);
-  void getCoefficients(Node *root, char coefficient = '0');
-  void factorizeQuadraticExpression(Node *root);
+  void getCoefficients(const Node *root, char coefficient = '0');
+  void factorizeQuadraticExpression(const Node *root);
   void printTree(Node const *first,
                  std::vector<std::string> const &lpref = std::vector<std::string>(),
                  std::vector<std::string> const &cpref = std::vector<std::string>(),
@@ -32,7 +32,7 @@ class ExpressionTree {
 
   bool isOperator(char ch);
   int getPrecedence(char ch);
-  std::pair<Node *, char> factorizeQuadraticExpressionHelper(Node *node);
+  std::pair<Node *, char> factorizeQuadraticExpressionHelper(const Node *node);
 };
 
 #include "../src/ExpressionTree.cpp"
